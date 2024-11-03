@@ -1,20 +1,19 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BenchmarkAndSpanExample
 {
-    public class NameParser
+    public static class NameParser
     {
-        public string GetLastName(string fullName)
+        public static string GetLastName(string fullName)
         {
             var names = fullName.Split(" ");
             var lastName = names.LastOrDefault();
             return lastName ?? string.Empty;
         }
 
-        public string GetLastNameUsingSubstring(string fullName)
+        public static string GetLastNameUsingSubstring(string fullName)
         {
-            var lastSpaceIndex = fullName.LastIndexOf(" ", StringComparison.Ordinal);
+            var lastSpaceIndex = fullName.LastIndexOf(' ');
 
             return lastSpaceIndex == -1
                 ? string.Empty

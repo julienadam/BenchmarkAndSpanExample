@@ -1,26 +1,27 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
+using NFluent;
 
 namespace BenchmarkAndSpanExample
 {
     [RankColumn]
+    [ShortRunJob]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [MemoryDiagnoser]
     public class NameParserBenchmarks
     {
-        private const string FullName = "Steve J Gordon";
-        private static readonly NameParser Parser = new NameParser();
+        private const string FullName = "John Ronald Reuel Tolkien";
 
         [Benchmark(Baseline = true)]
         public void GetLastName()
         {
-            Parser.GetLastName(FullName);
+            NameParser.GetLastName(FullName);
         }
 
         [Benchmark]
         public void GetLastNameUsingSubstring()
         {
-            Parser.GetLastNameUsingSubstring(FullName);
+            NameParser.GetLastNameUsingSubstring(FullName);
         }
     }
 }
